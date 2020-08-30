@@ -128,5 +128,26 @@ std::string Date::getMonthString(){
     }
 }
 
+void Date::showEuropeanDate_string() {
+    std::cout<<day<<" "<<getMonthString()<<" "<<year<<std::endl;
+
+}
+
+void Date::showEuropeanDate_num() {
+    if(getMonthNum()<10)
+    std::cout<<day<<"/0"<<getMonthNum()<<"/"<<year<<std::endl;
+    else
+        std::cout<<day<<"/"<<getMonthNum()<<"/"<<year<<std::endl;
+
+}
+
+void Date::showAmericanDate() {
+    if(getMonthNum()<10)
+        std::cout<<"0"<<getMonthNum()<<"/"<<day<<"/"<<year<<std::endl;
+    else
+        std::cout<<getMonthNum()<<"/"<<day<<"/"<<year<<std::endl;
+
+}
+
 
 

@@ -30,6 +30,12 @@ public:
 
     std::string getMonthString();
 
+    void showEuropeanDate_string();
+
+    void showEuropeanDate_num();
+
+    void showAmericanDate();
+
 
 
 private:
