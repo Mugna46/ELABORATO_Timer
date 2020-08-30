@@ -71,3 +71,62 @@ void Date::setYear(int y) {
     Date::year = y;
 }
 
+int Date::getMonthNum() {
+    switch(month){
+        case Months::Gennaio:
+            return 1;
+        case Months::Febbraio:
+            return 2;
+        case Months::Marzo:
+            return 3;
+        case Months::Aprile:
+            return 4;
+        case Months::Maggio:
+            return 5;
+        case Months::Giugno:
+            return 6;
+        case Months::Luglio:
+            return 7;
+        case Months::Agosto:
+            return 8;
+        case Months::Settembre:
+            return 9;
+        case Months::Ottobre:
+            return 10;
+        case Months::Novembre:
+            return 11;
+        case Months::Dicembre:
+            return 12;
+    }
+}
+std::string Date::getMonthString(){
+    switch(month){
+        case Months::Gennaio:
+            return "Gen";
+        case Months::Febbraio:
+            return "Feb";
+        case Months::Marzo:
+            return "Mar";
+        case Months::Aprile:
+            return "Apr";
+        case Months::Maggio:
+            return "May";
+        case Months::Giugno:
+            return "Jun";
+        case Months::Luglio:
+            return "Jul";
+        case Months::Agosto:
+            return "Aug";
+        case Months::Settembre:
+            return "Sep";
+        case Months::Ottobre:
+            return "Oct";
+        case Months::Novembre:
+            return "Nov";
+        case Months::Dicembre:
+            return "Dec";
+    }
+}
+
+
+

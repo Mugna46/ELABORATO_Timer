@@ -26,6 +26,11 @@ public:
 
     void setYear(int year);
 
+    int getMonthNum();
+
+    std::string getMonthString();
+
+
 
 private:
     Months month;

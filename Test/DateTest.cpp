@@ -51,3 +51,11 @@ TEST(Date, SetMonthFebBix){
     ASSERT_EQ(29, Rome.getDay());
     ASSERT_EQ(Months::Febbraio, Rome.getMonth());
 }
+TEST(Date, GetMonthNum){
+    Date Rome(25, Months::Novembre, 2020);
+    ASSERT_EQ(11, Rome.getMonthNum());
+}
+TEST(Date, GetMonthString){
+    Date Rome(25, Months::Novembre, 2020);
+    ASSERT_EQ("Nov", Rome.getMonthString());
+}
