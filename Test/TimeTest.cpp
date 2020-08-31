@@ -11,3 +11,7 @@ TEST(Time, Constructor){
     ASSERT_EQ(42,Rome.getMinutes());
     ASSERT_EQ(20,Rome.getSeconds());
 }
+TEST(Time, Config12hClock){
+    Time Rome(16,42,20);
+    ASSERT_EQ(4, Rome.config12hClock());
+}

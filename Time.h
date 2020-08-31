@@ -23,6 +23,13 @@ public:
 
     void setHour(int hour);
 
+    void showTime24hClock();
+
+    int config12hClock();
+
+    void showTime12hClock();
+
+
 
 private:
     int seconds;

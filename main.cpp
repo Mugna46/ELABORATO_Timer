@@ -1,14 +1,34 @@
 #include <iostream>
 #include "Date.h"
+#include "Time.h"
 
 
 int main() {
-Date Rome(20, Months::Aprile, 2019);
-Rome.showEuropeanDate_string();
+Date RomeD(20, Months::Aprile, 2019);
+
+RomeD.showEuropeanDate_string();
 std::cout<<""<<std::endl;
-Rome.showEuropeanDate_num();
+
+RomeD.showEuropeanDate_num();
 std::cout<<""<<std::endl;
-Rome.showAmericanDate();
+
+RomeD.showAmericanDate();
+std::cout<<""<<std::endl;
+
+try{
+    Time RomeT(23,5,4);
+
+    RomeT.showTime24hClock();
+    std::cout<<""<<std::endl;
+
+    RomeT.showTime12hClock();
+
+}catch(std::out_of_range e){
+    std::cerr<<e.what()<<std::endl;
+}
+
+
+
 }
 
 
