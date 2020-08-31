@@ -15,3 +15,12 @@ TEST(Time, Config12hClock){
     Time Rome(16,42,20);
     ASSERT_EQ(4, Rome.config12hClock());
 }
+TEST(Time, Setter){
+    Time Rome(0,0,0);
+    Rome.setHour(12);
+    Rome.setMinutes(59);
+    Rome.setSeconds(40);
+    ASSERT_EQ(40, Rome.getSeconds());
+    ASSERT_EQ(59, Rome.getMinutes());
+    ASSERT_EQ(12, Rome.getHour());
+}
