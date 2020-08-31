@@ -134,18 +134,28 @@ void Date::showEuropeanDate_string() {
 }
 
 void Date::showEuropeanDate_num() {
-    if(getMonthNum()<10)
-    std::cout<<day<<"/0"<<getMonthNum()<<"/"<<year<<std::endl;
+    if(day<10)
+        std::cout<<"0"<<day;
     else
-        std::cout<<day<<"/"<<getMonthNum()<<"/"<<year<<std::endl;
+        std::cout<<day;
+    if(getMonthNum()<10)
+        std::cout<<"/"<<"0"<<getMonthNum();
+    else
+        std::cout<<"/"<<getMonthNum();
+    std::cout<<"/"<<year<<std::endl;
 
 }
 
 void Date::showAmericanDate() {
     if(getMonthNum()<10)
-        std::cout<<"0"<<getMonthNum()<<"/"<<day<<"/"<<year<<std::endl;
+        std::cout<<"0"<<getMonthNum();
     else
-        std::cout<<getMonthNum()<<"/"<<day<<"/"<<year<<std::endl;
+        std::cout<<getMonthNum();
+    if(day<10)
+        std::cout<<"/"<<"0"<<day;
+    else
+        std::cout<<"/"<<day;
+    std::cout<<"/"<<year<<std::endl;
 
 }
 
