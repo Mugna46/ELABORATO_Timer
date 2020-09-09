@@ -1,9 +1,11 @@
 #include <iostream>
 #include "Date.h"
 #include "Time.h"
+#include <wx/wx.h>
+#include "WxWindow.h"
 
 
-int main() {
+/*int main() {
 Date RomeD(20, Months::Aprile, 2019);
 
 RomeD.showEuropeanDate_string();
@@ -29,6 +31,25 @@ try{
 
 
 
+}*/
+
+class MyApp : public wxApp
+{
+public:
+    virtual bool OnInit();
+};
+
+IMPLEMENT_APP(MyApp)
+
+bool MyApp::OnInit()
+{
+    Time *R=new Time(20,15,5);
+    auto *T1=new Timer(R);
+    Move *move = new Move(wxT("Timer"), T1);
+    move->Show(true);
+    T1->StartTimer();
+
+
+
+    return true;
 }
-
-
