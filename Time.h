@@ -23,11 +23,11 @@ public:
 
     void setHour(int hour);
 
-    void showTime24hClock();
+    void showTime24hClock();//TODO return string
 
     int config12hClock();
 
-    void showTime12hClock();
+    void showTime12hClock();//TODO return string
 
 
 

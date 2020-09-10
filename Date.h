@@ -12,7 +12,7 @@ class Date {
 public:
     Date(int d, Months m, int y);
 
-    int SetMonthDays();
+    int SetMonthDays();//TODO private
 
     Months getMonth() const;
 

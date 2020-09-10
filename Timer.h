@@ -15,7 +15,7 @@
 
 class Timer: Subject{
 public:
-    explicit Timer(Time *t): tempo(t){}
+    explicit Timer(Time &t): tempo(t){}
     Time setTimeOut(int h, int m, int s);
     void StartTimer();
     void subscribe(Observer *o) override;
@@ -26,7 +26,7 @@ public:
     int getTempoH() const;
 
 private:
-    Time *tempo;
+    Time &tempo;
     std::list<Observer*> observers;
 
 };

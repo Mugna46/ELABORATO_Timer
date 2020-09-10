@@ -43,7 +43,7 @@ IMPLEMENT_APP(MyApp)
 
 bool MyApp::OnInit()
 {
-    Time *R=new Time(20,15,5);
+    Time R(20,15,5);
     auto *T1=new Timer(R);
     Move *move = new Move(wxT("Timer"), T1);
     move->Show(true);

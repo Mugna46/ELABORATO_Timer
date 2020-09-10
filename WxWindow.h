@@ -22,7 +22,7 @@ public:
     void update() override;
 
 private:
-    Timer* subject;
+    Timer * subject;//TODO smart pointer
     int s, m, h;
 
 

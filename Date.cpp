@@ -10,7 +10,7 @@ Date::Date(int d, Months m, int y) : day(d), month(m), year(y) {
     if(year % 4 ==0 && month==Months::Febbraio)
         monthdays++;
     if (day > monthdays) {
-        std::cout << "Giorno non valido, impostato a 1" << std::endl;
+        std::cout << "Giorno non valido, impostato a 1" << std::endl; //TODO lancia eccezione
         day = 1;
     }
 }
@@ -65,7 +65,7 @@ void Date::setDay(int d) {
     }else{
         Date::day = d;
     }
-}
+}//TODO lancia eccezione
 
 void Date::setYear(int y) {
     Date::year = y;
