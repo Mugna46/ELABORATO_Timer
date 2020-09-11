@@ -24,3 +24,14 @@ TEST(Time, Setter){
     ASSERT_EQ(59, Rome.getMinutes());
     ASSERT_EQ(12, Rome.getHour());
 }
+TEST(Time, ConstructorException){
+    ASSERT_THROW(Time Rome(0,59,61), std::out_of_range);
+    ASSERT_THROW(Time Rome(0,60,59), std::out_of_range);
+    ASSERT_THROW(Time Rome(24,20,26), std::out_of_range);
+}
+TEST(Time, SetterException){
+    Time Rome(0,0,0);
+    ASSERT_THROW(Rome.setSeconds(60),std::out_of_range);
+    ASSERT_THROW(Rome.setHour(24),std::out_of_range);
+    ASSERT_THROW(Rome.setSeconds(70),std::out_of_range);
+}
