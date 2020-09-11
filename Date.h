@@ -12,8 +12,6 @@ class Date {
 public:
     Date(int d, Months m, int y);
 
-    int SetMonthDays();//TODO private
-
     Months getMonth() const;
 
     int getDay() const;
@@ -42,6 +40,7 @@ private:
     Months month;
     int day;
     int year;
+    int SetMonthDays();
 
 };
 
