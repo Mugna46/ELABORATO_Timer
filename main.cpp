@@ -44,6 +44,7 @@ bool MyApp::OnInit()
     Move *move = new Move(wxT("Timer"), T1);
     move->Show(true);
     T1->StartTimer();
+    //TODO aggiungere bottoni,data e ora nella finestra
 
 
 
