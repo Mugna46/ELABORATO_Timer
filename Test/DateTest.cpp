@@ -11,18 +11,6 @@ TEST(Date, ConstructorFebBix){
     ASSERT_EQ(Months::Febbraio, Rome.getMonth());
     ASSERT_EQ(2020, Rome.getYear());
 }
-TEST(Date, ConstructorFebNoBix){
-    Date Rome(29,Months::Febbraio,2019);
-    ASSERT_EQ(1,Rome.getDay());
-    ASSERT_EQ(Months::Febbraio, Rome.getMonth());
-    ASSERT_EQ(2019, Rome.getYear());
-}
-TEST(Date, Constructor30DaysMonthFail){
-    Date Rome(31, Months::Novembre, 2020);
-    ASSERT_EQ(1, Rome.getDay());
-    ASSERT_EQ(Months::Novembre, Rome.getMonth());
-    ASSERT_EQ(2020, Rome.getYear());
-}
 TEST(Date, Constructor31Days){
     Date Rome(31, Months::Gennaio, 2020);
     ASSERT_EQ(31, Rome.getDay());
@@ -33,11 +21,6 @@ TEST(Date, SetDay){
     Date Rome(25, Months::Febbraio, 2020);
     Rome.setDay(29);
     ASSERT_EQ(29, Rome.getDay());
-}
-TEST(Date, SetDayFail){
-    Date Rome(30, Months::Gennaio, 2020);
-    Rome.setDay(32);
-    ASSERT_EQ(1, Rome.getDay());
 }
 TEST(Date, SetMonthFrom31to30){
     Date Rome(31, Months::Gennaio, 2050);
@@ -58,4 +41,11 @@ TEST(Date, GetMonthNum){
 TEST(Date, GetMonthString){
     Date Rome(25, Months::Novembre, 2020);
     ASSERT_EQ("Nov", Rome.getMonthString());
+}
+TEST(Date, ConstructorException){
+    ASSERT_THROW(Date Rome(30, Months::Febbraio, 2020), std::out_of_range);
+}
+TEST(Date, SetDayException){
+    Date Rome(29, Months::Gennaio, 2029);
+    ASSERT_THROW(Rome.setDay(32), std::out_of_range);
 }

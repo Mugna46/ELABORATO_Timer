@@ -13,7 +13,7 @@ Time::Time(int h, int m, int s) {
             hour=h;
         }
         else{
-            throw std::out_of_range("Ora non valida");
+            throw std::out_of_range("Orario non valido");
         }
 }
 
@@ -30,15 +30,25 @@ int Time::getHour() const {
 }
 
 void Time::setSeconds(int s) {
-    Time::seconds = s;
+    if(s>=0 && s<60)
+        Time::seconds = s;
+    else
+        throw std::out_of_range("Secondi non validi");
+
 }
 
 void Time::setMinutes(int m) {
-    Time::minutes = m;
+    if(m>=0 && m<60)
+        Time::minutes = m;
+    else
+        throw std::out_of_range("Minuti non validi");
 }
 
 void Time::setHour(int h) {
-    Time::hour = h;
+    if(h>=0 && h<24)
+        Time::hour = h;
+    else
+        throw std::out_of_range("Ore non valide");
 }
 
 std::string Time::ToTime24hClock() {

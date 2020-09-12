@@ -9,10 +9,9 @@ Date::Date(int d, Months m, int y) : day(d), month(m), year(y) {
     int monthdays= SetMonthDays();
     if(year % 4 ==0 && month==Months::Febbraio)
         monthdays++;
-    if (day > monthdays) {
-        std::cout << "Giorno non valido, impostato a 1" << std::endl;
-        day = 1;
-    }
+    if (day > monthdays)
+        throw std::out_of_range("Giorno non valido");
+
 }
 
 int Date::SetMonthDays() {
@@ -61,7 +60,7 @@ void Date::setDay(int d) {
     if(year % 4 ==0 && month==Months::Febbraio)
         monthdays++;
     if(d>monthdays){
-        day=1;
+        throw std::out_of_range("Giorno non valido");
     }else{
         Date::day = d;
     }
