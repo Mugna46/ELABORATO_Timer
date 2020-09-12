@@ -16,13 +16,9 @@ RomeD.showAmericanDate();
 std::cout<<""<<std::endl;
 
 try{
-    Time RomeT(23,5,4);
-
-    RomeT.showTime24hClock();
-    std::cout<<""<<std::endl;
-
-    RomeT.showTime12hClock();
-
+    Time RomeT(10,10,4);
+    std::cout<<RomeT.ToTime24hClock()<<std::endl;
+    std::cout<<RomeT.ToTime12hClock()<<std::endl;
 }catch(std::out_of_range e){
     std::cerr<<e.what()<<std::endl;
 }

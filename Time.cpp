@@ -41,19 +41,19 @@ void Time::setHour(int h) {
     Time::hour = h;
 }
 
-void Time::showTime24hClock() {
-    if(hour<10)
-        std::cout<<"0"<<hour;
-    else
-        std::cout<<hour;
-    if(minutes<10)
-        std::cout<<":"<<"0"<<minutes;
-    else
-        std::cout<<":"<<minutes;
+std::string Time::ToTime24hClock() {
+    std::string S=std::to_string(seconds);
+    std::string M=std::to_string(minutes);
+    std::string H=std::to_string(hour);
+    std::string Separator=":";
+    std::string zero="0";
     if(seconds<10)
-        std::cout<<":"<<"0"<<seconds<<std::endl;
-    else
-        std::cout<<":"<<seconds<<std::endl;
+        S=zero+S;
+    if(hour<10)
+        H=zero+H;
+    if(minutes<10)
+        M=zero+M;
+    return H+Separator+M+Separator+S;
 }
 
 int Time::config12hClock() {
@@ -110,36 +110,23 @@ int Time::config12hClock() {
     return 0;
 }
 
-void Time::showTime12hClock() {
+std::string Time::ToTime12hClock() {
     int newHour=config12hClock();
-    if(hour>=12) {
-        if(newHour<10)
-            std::cout<<"0"<<newHour;
-        else
-            std::cout<<newHour;
-        if(minutes<10)
-            std::cout<<":"<<"0"<<minutes;
-        else
-            std::cout<<":"<<minutes;
-        if(seconds<10)
-            std::cout<<":"<<"0"<<seconds<<" PM"<<std::endl;
-        else
-            std::cout<<":"<<seconds<<" PM"<<std::endl;
+    std::string S=std::to_string(seconds);
+    std::string M=std::to_string(minutes);
+    std::string H=std::to_string(newHour);
+    std::string Separation=":";
+    std::string zero="0";
+    if(newHour<10)
+        H=zero+H;
+    if(seconds<10)
+        S=zero+S;
+    if(minutes<10)
+        M=zero+M;
+    if(hour>=12)
+        return H+Separation+M+Separation+S+" PM";
+    else
+        return H+Separation+M+Separation+S+" AM";
 
-    }
-    else {
-        if (newHour < 10)
-            std::cout << "0" << newHour;
-        else
-            std::cout << newHour;
-        if (minutes < 10)
-            std::cout << ":" << "0" << minutes;
-        else
-            std::cout << ":" << minutes;
-        if (seconds < 10)
-            std::cout << ":" << "0" << seconds << " AM" << std::endl;
-        else
-            std::cout << ":" << seconds << " AM" << std::endl;
-    }
 
 }

@@ -23,11 +23,11 @@ public:
 
     void setHour(int hour);
 
-    void showTime24hClock();
+    std::string ToTime24hClock();
 
     int config12hClock();
 
-    void showTime12hClock();
+    std::string ToTime12hClock();
 
 
 
