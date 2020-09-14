@@ -18,7 +18,7 @@ Time::Time(int h, int m, int s) {
 }
 
 int Time::getSeconds() const {
-    return seconds;
+    return this->seconds;
 }
 
 int Time::getMinutes() const {

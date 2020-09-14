@@ -49,3 +49,15 @@ TEST(Date, SetDayException){
     Date Rome(29, Months::Gennaio, 2029);
     ASSERT_THROW(Rome.setDay(32), std::out_of_range);
 }
+TEST(Date, ToEuropeanDateString){
+    Date Rome(29, Months::Gennaio, 2029);
+    ASSERT_EQ("29 Gen 2029",Rome.ToEuropeanDate_string());
+}
+TEST(Date, ToAmericanDate){
+    Date Rome(9, Months::Gennaio, 2029);
+    ASSERT_EQ("01/09/2029", Rome.ToAmericanDate());
+}
+TEST(Date, ToEuropeanDateNum){
+    Date Rome(9, Months::Gennaio, 2029);
+    ASSERT_EQ("09/01/2029", Rome.ToEuropeanDate_num());
+}

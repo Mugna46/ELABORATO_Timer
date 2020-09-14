@@ -12,11 +12,12 @@
 #include "Time.h"
 #include "Observer.h"
 #include "Subject.h"
+#include <memory>
 
 class Timer: Subject{
 public:
-    explicit Timer(Time &t): tempo(t){}
-    Time setTimeOut(int h, int m, int s);
+    explicit Timer(std::shared_ptr<Time> t): tempo(std::move(t)){}
+    void setTimeOut(int h, int m, int s);
     void StartTimer();
     void subscribe(Observer *o) override;
     void unsubscribe(Observer *o) override;
@@ -26,8 +27,9 @@ public:
     int getTempoH() const;
 
 private:
-    Time &tempo;
+    std::shared_ptr<Time> tempo;
     std::list<Observer*> observers;
+
 
 };
 

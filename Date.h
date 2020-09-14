@@ -28,11 +28,11 @@ public:
 
     std::string getMonthString();
 
-    void showEuropeanDate_string();//TODO return string
+    std::string ToEuropeanDate_string();
 
-    void showEuropeanDate_num();
+    std::string ToEuropeanDate_num();
 
-    void showAmericanDate();//TODO return string
+    std::string ToAmericanDate();
 
 
 

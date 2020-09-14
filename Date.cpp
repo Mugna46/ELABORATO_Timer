@@ -127,34 +127,43 @@ std::string Date::getMonthString(){
     }
 }
 
-void Date::showEuropeanDate_string() {
-    std::cout<<day<<" "<<getMonthString()<<" "<<year<<std::endl;
+std::string Date::ToEuropeanDate_string() {
+    std::string D=std::to_string(day);
+    std::string M=getMonthString();
+    std::string Y=std::to_string(year);
+    std::string Separator=" ";
+    std::string zero="0";
+    if(day<10)
+        D=zero+D;
+    return D+Separator+M+Separator+Y;
 
 }
 
-void Date::showEuropeanDate_num() {
+std::string Date::ToEuropeanDate_num() {
+    std::string D=std::to_string(day);
+    std::string M=std::to_string(getMonthNum());
+    std::string Y=std::to_string(year);
+    std::string Separator="/";
+    std::string zero="0";
     if(day<10)
-        std::cout<<"0"<<day;
-    else
-        std::cout<<day;
+        D=zero+D;
     if(getMonthNum()<10)
-        std::cout<<"/"<<"0"<<getMonthNum();
-    else
-        std::cout<<"/"<<getMonthNum();
-    std::cout<<"/"<<year<<std::endl;
+        M=zero+M;
+    return D+Separator+M+Separator+Y;
 
 }
 
-void Date::showAmericanDate() {
-    if(getMonthNum()<10)
-        std::cout<<"0"<<getMonthNum();
-    else
-        std::cout<<getMonthNum();
+std::string Date::ToAmericanDate() {
+    std::string D=std::to_string(day);
+    std::string M=std::to_string(getMonthNum());
+    std::string Y=std::to_string(year);
+    std::string Separator="/";
+    std::string zero="0";
     if(day<10)
-        std::cout<<"/"<<"0"<<day;
-    else
-        std::cout<<"/"<<day;
-    std::cout<<"/"<<year<<std::endl;
+        D=zero+D;
+    if(getMonthNum()<10)
+        M=zero+M;
+    return M+Separator+D+Separator+Y;
 
 }
 
