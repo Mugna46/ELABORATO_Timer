@@ -9,6 +9,7 @@
 #include <memory>
 #include "Observer.h"
 #include "Timer.h"
+#include "Date.h"
 
 class Move : public wxFrame, Observer
 {
@@ -20,17 +21,24 @@ public:
     wxStaticText *st3;
     wxStaticText *st4;
     wxStaticText *st5;
+    wxStaticText *st6;
+    wxStaticText *st7;
+    wxStaticText *st8;
+    wxMenuBar *menubar;
+    wxMenu *file;
     wxPanel *panel;
     void attach() override;
     void detach() override;
     void update() override;
     void Initialize(std::shared_ptr<Time> R);
     void OnStart(wxCommandEvent &event);
-    void OnQuit(wxCommandEvent &event);
+    void OnPause(wxCommandEvent &event);
     void showTime(std::shared_ptr<Time> T);
-    void ST();
+    void OnQuit(wxCommandEvent &event);
     void OnReset(wxCommandEvent &event);
     void OnPlus(wxCommandEvent &event);
+    void ST();
+    void ShowDate(Date D);
     DECLARE_EVENT_TABLE();
 
 

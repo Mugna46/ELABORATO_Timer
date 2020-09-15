@@ -3,14 +3,13 @@
 //
 
 #include "WxWindow.h"
-#include "Time.h"
-#include "Timer.h"
 
 wxBEGIN_EVENT_TABLE(Move, wxFrame)
 EVT_BUTTON(10001, Move::OnStart)
-EVT_BUTTON(wxID_EXIT, Move::OnQuit)
 EVT_BUTTON(1001,Move::OnReset)
 EVT_BUTTON(101, Move::OnPlus)
+EVT_BUTTON(11, Move::OnPause)
+EVT_MENU(wxID_EXIT, Move::OnQuit)
 wxEND_EVENT_TABLE()
 
 Mythread *m_tread;
@@ -25,17 +24,29 @@ Move::Move(const wxString& title, std::shared_ptr<Timer> Tm)
     st2 = new wxStaticText(panel, wxID_ANY, "", wxPoint(200,50), wxDefaultSize, wxST_ELLIPSIZE_MIDDLE);
     st3 = new wxStaticText(panel, wxID_ANY, "", wxPoint(100,50), wxDefaultSize);
     st4 = new wxStaticText(panel, wxID_ANY, "", wxPoint(20,200), wxDefaultSize);
-    st5 = new wxStaticText(panel, wxID_ANY, "", wxPoint(20,250), wxDefaultSize);
-    wxButton *ButtonS= new wxButton(panel, 10001, wxT("Start"), wxPoint(210,20), wxSize(80,30));
-    wxButton *ButtonP= new wxButton(panel,wxID_EXIT, wxT("Pause"),wxPoint(210,120), wxSize(80,30));
-    wxButton *ButtonR= new wxButton(panel,1001, wxT("Reset"),wxPoint(400,120), wxSize(80,30));
-    wxButton *ButtonPlus = new wxButton(panel,101, wxT("25"),wxPoint(400,20), wxSize(80,30));
+    st5 = new wxStaticText(panel, wxID_ANY, "", wxPoint(20,240), wxDefaultSize);
+    st6 = new wxStaticText(panel, wxID_ANY, "", wxPoint(20,300), wxDefaultSize);
+    st7 = new wxStaticText(panel, wxID_ANY, "", wxPoint(20,340), wxDefaultSize);
+    st8 = new wxStaticText(panel, wxID_ANY, "", wxPoint(20,380), wxDefaultSize);
+    new wxButton(panel, 10001, wxT("Start"), wxPoint(45, 20), wxSize(80, 30));
+    new wxButton(panel, 11, wxT("Pause"), wxPoint(45, 120), wxSize(80, 30));
+    new wxButton(panel, 1001, wxT("Reset"), wxPoint(375, 120), wxSize(80, 30));
+    new wxButton(panel, 101, wxT("25"), wxPoint(375, 20), wxSize(80, 30));
     wxFont myFont(40, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
+    wxFont myFont2(30, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
     st1->SetFont(myFont);
     st2->SetFont(myFont);
     st3->SetFont(myFont);
-    st4->SetFont(myFont);
-    st5->SetFont(myFont);
+    st4->SetFont(myFont2);
+    st5->SetFont(myFont2);
+    st6->SetFont(myFont2);
+    st7->SetFont(myFont2);
+    st8->SetFont(myFont2);
+    menubar= new wxMenuBar;
+    file= new wxMenu;
+    file->Append(wxID_EXIT, wxT("&Quit"));
+    menubar->Append(file, wxT("&File"));
+    SetMenuBar(menubar);
     Centre();
 }
 Move::~Move() {
@@ -73,13 +84,20 @@ void Move::update() {
 void Move::Initialize(std::shared_ptr<Time> R) {
     if(R->getHour()==0)
         st3->SetLabelText("00");
+    else if(R->getHour()<10)
+        st3->SetLabel(wxString::Format(wxT("0%d"), R->getHour()));
     else
         st3->SetLabel(wxString::Format(wxT("%d"), R->getHour()));
     if(R->getMinutes()==0)
         st2->SetLabelText(":00");
+    else if(R->getMinutes()<10)
+        st2->SetLabel(wxString::Format(wxT(":0%d"), R->getMinutes()));
     else
         st2->SetLabel(wxString::Format(wxT(":%d"), R->getMinutes()));
-    st1->SetLabel(wxString::Format(wxT(":%d"), R->getSeconds()));
+    if(R->getSeconds()<10)
+        st1->SetLabel(wxString::Format(wxT(":0%d"), R->getSeconds()));
+    else
+        st1->SetLabel(wxString::Format(wxT(":%d"), R->getSeconds()));
 }
 
 
@@ -95,7 +113,7 @@ void Move::showTime(std::shared_ptr<Time> T) {
     st5->SetLabelText(T->ToTime12hClock());
 }
 
-void Move::OnQuit(wxCommandEvent &event) {
+void Move::OnPause(wxCommandEvent & WXUNUSED(event)) {
     m_tread->Pause();
 }
 
@@ -103,7 +121,7 @@ void Move::ST() {
     subject->StartTimer();
 }
 
-void Move::OnReset(wxCommandEvent &event) {
+void Move::OnReset(wxCommandEvent & WXUNUSED(event)) {
     m_tread->Pause();
     subject->setTimeOut(0,0,0);
     st1->SetLabelText(":00");
@@ -111,11 +129,21 @@ void Move::OnReset(wxCommandEvent &event) {
     st3->SetLabelText("00");
 }
 
-void Move::OnPlus(wxCommandEvent &event) {
+void Move::OnPlus(wxCommandEvent & WXUNUSED(event)) {
     subject->setTimeOut(0,0,25);
     st1->SetLabelText(":25");
     st2->SetLabelText(":00");
     st3->SetLabelText("00");
+}
+
+void Move::ShowDate(Date D) {
+    st6->SetLabelText(D.ToEuropeanDate_string());
+    st7->SetLabelText(D.ToEuropeanDate_num());
+    st8->SetLabelText(D.ToAmericanDate());
+}
+
+void Move::OnQuit(wxCommandEvent & WXUNUSED(event)) {
+    Close(true);
 }
 
 
